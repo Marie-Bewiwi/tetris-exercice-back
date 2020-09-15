@@ -72,4 +72,26 @@ return $resultat;
 }
 echo "<br>".listHTML('Capitale',["Berlin","Paris","Moscou"]);
 
+//question5
+function remplacerLesLettres($phrase) {
+$letterstoreplace= array("e","i","o");
+$replacearray=array(3,1,0);
+$replacedletter=str_ireplace($letterstoreplace,$replacearray,$phrase);
+return $replacedletter;
+}
+echo remplacerLesLettres("Je kiffe la programmation");
+
+//question6
+function quelleAnnee(){
+    $today = date("Y");
+    return $today;
+}
+echo "<br>".quelleAnnee();
+
+//question 7 
+function quelleDate(){
+    $todaysdate = date("d/m/Y");
+    return $todaysdate;
+}
+echo "<br>".quelleDate();
 ?>
