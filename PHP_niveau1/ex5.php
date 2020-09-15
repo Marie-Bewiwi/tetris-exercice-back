@@ -59,3 +59,17 @@ $pays=strtolower($pays);
 }
 echo capital("Allemagne");
 echo "<br>".capital("Japon");
+
+//4e partie 
+function listHTML($listname,$arrayelements){
+    $resultat="<h3>$listname</h3>";
+    $resultat.="<ul>";
+    foreach($arrayelements as $element){
+        $resultat.="<li>$element</li>";
+    }
+    $resultat.="</ul>";
+return $resultat;
+}
+echo "<br>".listHTML('Capitale',["Berlin","Paris","Moscou"]);
+
+?>
