@@ -9,13 +9,13 @@ $terminaisons_ger = array ("e","es","e","eons","ez","ent");
 $longueurpronoms = count($pronoms);          
     if (preg_match('/ger$/',$verbe)){
         for ($i=0;$i<$longueurpronoms;$i++) {
-        $verbecoupe = substr_replace($verbe,$terminaisons_ger[$i],-2);
-        echo $pronoms[$i]." ".$verbecoupe."<br>";
+            $verbecoupe = substr_replace($verbe,$terminaisons_ger[$i],-2);
+            echo $pronoms[$i]." ".$verbecoupe."<br>";
         }
     }
 
     else if (preg_match('/er$/', $verbe)){
-            for ($i=0;$i<$longueurpronoms;$i++){
+        for ($i=0;$i<$longueurpronoms;$i++){
             $verbecoupe = substr_replace($verbe,$terminaisons[$i],-2);
             echo $pronoms[$i]." ".$verbecoupe."<br>";
             }
@@ -28,5 +28,12 @@ $longueurpronoms = count($pronoms);
 echo conjuguer("nager")."<br>";
 echo "<br>".conjuguer("manger");
 
+/* on pourrait factoriser la fonction :
+$terminaisons_er = [...]:
+$terminaisons_get = [...];
+$terminaisons_selectionnees;
 
+// Si "GER", $terminaisons_selectionnees = $terminaisons_ger
+// Sinon si "ER", $terminaisons_Selectionees = $terminaisons_er
+// For blabla, replace($terminaisons_selectionnees, blabla)*/
 ?>
