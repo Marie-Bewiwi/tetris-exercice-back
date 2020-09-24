@@ -57,7 +57,7 @@ function veriftel($numtel)
 function verifpostal($codepostal)
 {
     if (empty($_POST['postcode'])) {
-        echo 'Ce champ est obligatoire <button><a href="index.php>Retour au formulaire</a></button>';
+        echo 'Ce champ est obligatoire <button><a href="index.php">Retour au formulaire</a></button>';
     } else {
         if (strlen($codepostal) == 5 && (preg_match('/[0-9]{5}/', $codepostal))) {
             echo $codepostal;

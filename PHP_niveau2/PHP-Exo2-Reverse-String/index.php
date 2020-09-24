@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 
 function invert ($chaine){
     $chaineinversee= strrev($chaine);
