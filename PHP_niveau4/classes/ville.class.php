@@ -1,11 +1,16 @@
 <?php
 class ville
 {
-    public $nom;
-    public $departement;
+    private $nom;
+    private $departement;
 
-    public function getinfo()
+    public function __construct($n, $dpt)
     {
-        return "La ville de " . $this->nom . " est dans le département : " . $this->departement . "<br/>"; // réfléchir à ce que cette méthode doit renvoyer
+        $this->nom = $n;
+        $this->departement = $dpt;
+    }
+    public function getInfo()
+    {
+        return "La ville de ~ " . $this->nom . " ~ est dans le département : " . $this->departement . "<br/>"; // réfléchir à ce que cette méthode doit renvoyer
     }
 }
