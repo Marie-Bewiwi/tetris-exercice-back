@@ -17,11 +17,11 @@ $explicit_destruct = true;
 if ($explicit_destruct) {
     //Suppression explicite du client avec unset, donc appel implicite au destructeur
     unset($client);
-    echo $client . ' unset, appel au destructeur pour libérer la mémoire occupée par $client<br>';
+    echo '$client unset, appel au destructeur pour libérer la mémoire occupée par $client<br>';
 }
 
 if (isset($client)) {
-    echo $client . ' existe encore, il va être nettoyé par le garbage collector en faisant appel à son destructeur<br>';
+    echo $client->getPersonne() . ' existe encore, il va être nettoyé par le garbage collector en faisant appel à son destructeur<br>';
 }
 
 echo "Fin du script";

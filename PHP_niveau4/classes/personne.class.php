@@ -24,7 +24,7 @@ class personne
     public function getPersonne() // un getteur n'a jamais de paramètre
 
     {
-        return $this->prenom . " " . $this->nom . " habite à " . $this->adresse . ". <br/>";
+        return $this->prenom . " " . $this->nom . " habite à " . $this->adresse . ".";
     }
 
     public function setadresse($newAdresse)
