@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flux RSS</title>
+</head>
+
+<body>
+    <h1>Yo les gens</h1>
+
+    <div id="container">
+
+    </div>
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous">
+    </script>
+    <script>
+        $.ajax('getrss.php').done(remplircontainer)
+        function remplircontainer(data) {
+            $('#container').append(data)
+        }
+    </script>
+</body>
+
+</html>
