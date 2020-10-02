@@ -19,22 +19,31 @@ function loadrss($url)
     // récupération de la description du flux
     $channel_desc = $channel->getElementsByTagName('description')->item(0)->childNodes->item(0)->nodeValue;
 
-    // génération du contenu à partir des infos du flux dans "<channel>"
-    echo ("<p><a href='" . $channel_link . "'>Bienvenue sur le flux RSS de " . $channel_title . "</a>");
-    echo ("<br>");
-    echo ("Description : " . $channel_desc . "</p>");
-
     // on va ensuite afficher les 3 premiers éléments du flux et les récupérant manuellement
+    echo "<h2 class='text-center'>Bienvenue sur le feed RSS de <a href='$channel_link'>$channel_title</a></h2>";
     $items = $xmlDoc->getElementsByTagName('item');
     $itemslength = count($items);
     for ($i = 0; $i < $itemslength; $i++) {
         $item = $items->item($i);
-        $imageurl = $item->getElementsbyTagName('thumbnail')->item(0)->getAttribute('url');
-        echo "<p>" . $item->getElementsbyTagName('title')->item(0)->childNodes->item(0)->nodeValue . "</p>";
-        echo $item->getElementsbyTagName('link')->item(0)->childNodes->item(0)->nodeValue . "<br/>";
-        echo "<img src = '$imageurl'> </img>";
-        echo $item->getElementsbyTagName('description')->item(0)->childNodes->item(0)->nodeValue . "<br/>";
-        echo $item->getElementsbyTagName('pubDate')->item(0)->childNodes->item(0)->nodeValue;
+        $article_img = $item->getElementsbyTagName('thumbnail')->item(0)->getAttribute('url');
+        $article_title = $item->getElementsbyTagName('title')->item(0)->childNodes->item(0)->nodeValue;
+        $article_link = $item->getElementsbyTagName('link')->item(0)->childNodes->item(0)->nodeValue;
+        $article_desc = $item->getElementsbyTagName('description')->item(0)->childNodes->item(0)->nodeValue;
+        $article_date = $item->getElementsbyTagName('pubDate')->item(0)->childNodes->item(0)->nodeValue;
+        $date_unix = strtotime($article_date);
+        $date_formatee = date('l d F Y H:i ', $date_unix);
+        echo "<div class='container card-group'>
+            <div class='card mb-5'>
+                <img src='$article_img' class='card-img-top'/>
+                <div class='card-body'>
+                    <a href='$article_link'><h5 class='card-title'>$article_title</h5></a>
+                    <p class='card-text'>$article_desc</p>
+                </div>
+                <div class='card-footer'>
+                    <small class='text-muted'>$date_formatee</small>
+                </div>
+            </div>
+     </div>";
     }
 
 }
