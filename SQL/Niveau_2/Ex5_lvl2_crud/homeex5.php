@@ -13,12 +13,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=niveau2', $bduser, $bdpass);
 
 $tableaubdd = $bdd->prepare("SELECT id,prenom,nom,email,id_choix FROM utilisateurs");
 $tableaubdd->execute();
-$rowuser = $tableaubdd->fetch(PDO::FETCH_ASSOC);
-$id = $rowuser['id'];
-$prenom = $rowuser['prenom'];
-$nom = $rowuser['nom'];
-$email = $rowuser['email'];
-$idchoix = $rowuser['id_choix'];
+$users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -30,28 +25,30 @@ $idchoix = $rowuser['id_choix'];
 </head>
 <body>
 <table>
-                <tr>
-                    <th>id</th>
-                    <td> <?php echo $id ?></td>
-                </tr>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>prenom</th>
+            <th>nom</th>
+            <th>Email</th>
+            <th>ID choix</th>
+            <th>Action</th>
 
-                <tr>
-                    <th>Prénom</th>
-                    <td> <?php echo $prenom ?></td>
-                </tr>
-                <tr>
-                    <th>Nom</th>
-                    <td><?php echo $nom ?> </td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td> <?php echo $email ?></td>
-                </tr>
-                <tr>
-                    <th>ID choix</th>
-                    <td><?php echo $idchoix ?></td>
-                </tr>
-                <input type='submit' value='supp' name='supp' id='supp'>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($users as $user) {?>
+        <tr>
+            <td><?php echo $user['id'] ?></td>
+            <td> <?php echo $user['prenom'] ?></td>
+            <td><?php echo $user['nom'] ?> </td>
+            <td> <?php echo $user['email'] ?></td>
+            <td><?php echo $user['id_choix'] ?></td>
+            <td> <input type='submit' value='supp' name='supp' id='supp'> </td>
+        </tr>
+    <?php }
+;?>
+    </tbody>
 </table>
 
 <form action="" method="post">
