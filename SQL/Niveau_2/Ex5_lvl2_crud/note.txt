@@ -1,0 +1,7 @@
+https://openclassrooms.com/forum/sujet/afficher-le-contenu-d-une-base-de-donnee-dans-un-tableau-69984
+
+Faire test de connexion? : fait
+Afficher TOUS les utilisateurs avec une boucle while...
+
+Supprimer -> Delete
+Modifier -> Update
