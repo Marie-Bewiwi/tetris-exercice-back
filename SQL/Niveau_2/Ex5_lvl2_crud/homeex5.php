@@ -51,7 +51,12 @@ $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
                     <input type='submit' value='supp' name='supp' id='supp'>
                 </form>
             </td>
-            <td> <form action='update.php' method='post'><input type='submit' value='modif' name='mofif' id='modif'></form></td>
+            <td>
+                <form action='formuser.php' method='post'>
+                    <input type='hidden' value='<?php echo $user['id'] ?>' name='id'>
+                    <input type='submit' value='modif' name='mofif' id='modif'>
+                </form>
+            </td>
         </tr>
     <?php }
 ;?>
