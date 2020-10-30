@@ -22,6 +22,7 @@ if (isset($_SESSION['email'])) {
 <body>
 
         <form action='update.php' method='post'>
+        <input type="hidden" name="id" value='<?php echo $iduser ?>'>
             <label for="nom">Nom :</label>
             <input type="text" name="nom" id="nom" value="<?php echo $user['nom'] ?>">
             <label for="prenom">Prénom :</label>
