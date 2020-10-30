@@ -6,6 +6,7 @@ if (isset($_POST['deconnexion'])) {
     session_destroy();
     echo '<br>Vous avez été déco';
 }
+
 /*Connexion à la base de données*/
 $bduser = 'root';
 $bdpass = '';
@@ -44,7 +45,13 @@ $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $user['nom'] ?> </td>
             <td> <?php echo $user['email'] ?></td>
             <td><?php echo $user['id_choix'] ?></td>
-            <td> <input type='submit' value='supp' name='supp' id='supp'> </td>
+            <td>
+                <form action='delete.php' method='post'>
+                    <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
+                    <input type='submit' value='supp' name='supp' id='supp'>
+                </form>
+            </td>
+            <td> <form action='update.php' method='post'><input type='submit' value='modif' name='mofif' id='modif'></form></td>
         </tr>
     <?php }
 ;?>
