@@ -1,8 +1,7 @@
 <?php
+include_once 'C:/laragon/www/tetris-exercice-back/SQL/Niveau_2/database.php';
+use Medoo\Medoo;
 session_start();
-$bduser = 'root';
-$bdpass = '';
-$bdd = new PDO('mysql:host=localhost;dbname=niveau2', $bduser, $bdpass);
 
 /*Bonus*/
 
@@ -28,21 +27,27 @@ if (isset($_POST['Signin'])) {
     if (true) {
         if (!empty($_POST['email']) and !empty($_POST['password'])) {
 
-            $requser = $bdd->prepare("SELECT * FROM utilisateurs WHERE email = ?");
-            $requser->execute([$mail]);
-            $userexist = $requser->rowcount();
+            $countuser = $database->count('utilisateurs', [
+                'email' => $mail,
+            ]);
+            var_dump($countuser);
+            //$requser = $bdd->prepare("SELECT * FROM utilisateurs WHERE email = ?");
+            //$requser->execute([$mail]);
+            //$userexist = $requser->rowcount();
 
-            if ($userexist == 1) {
+            if ($countuser == 1) {
 
-                $reqmdp = $bdd->prepare('SELECT mdp FROM utilisateurs WHERE email = ?');
-                $reqmdp->execute([$mail]);
-                $rowmdp = $reqmdp->fetch(PDO::FETCH_ASSOC);
+                $reqmdp = $database->get('utilisateurs', 'mdp', ['email' => $mail]);
+                //$reqmdp = $bdd->prepare('SELECT mdp FROM utilisateurs WHERE email = ?');
+                //$reqmdp->execute([$mail]);
+                //$rowmdp = $reqmdp->fetch(PDO::FETCH_ASSOC);
+                var_dump($reqmdp);
 
-                if (password_verify($password, $rowmdp['mdp'])) {
+                if (password_verify($password, $reqmdp)) {
 
                     $_SESSION['email'] = $mail;
                     $essai = 1;
-                    /*header('Location:home.php');*/
+                    header('Location:home.php');
 
                 } else {
                     $erreur = 'mdp incorrect';
@@ -56,8 +61,13 @@ if (isset($_POST['Signin'])) {
             $erreur = "Tous les champs doivent être complétés";
         }
         /*Insertion du log en bdd table connexion*/
-        $tentative = $bdd->prepare("INSERT INTO connexions (login,password,tentative) VALUES (?,?,?)");
-        $tentative->execute(array($mail, $password, $essai));
+        $database->insert('connexions', [
+            'login' => $mail,
+            'password' => $password,
+            'tentative' => $essai,
+        ]);
+        // $tentative = $bdd->prepare("INSERT INTO connexions (login,password,tentative) VALUES (?,?,?)");
+        // $tentative->execute(array($mail, $password, $essai));
     }
 }
 ?>
