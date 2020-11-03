@@ -1,20 +1,25 @@
 <?php
-
+include_once 'C:/laragon/www/tetris-exercice-back/SQL/Niveau_2/database.php';
+use Medoo\Medoo;
 if (isset($_POST['envoiemail'])) {
     include 'sendemail.php';
     $mail = $_POST['emailrecup'];
-    $bduser = 'root';
-    $bdpass = '';
-    $bdd = new PDO('mysql:host=localhost;dbname=niveau2', $bduser, $bdpass);
-    $sqlquery = $bdd->prepare("SELECT * FROM utilisateurs where email = ?");
-    $sqlquery->execute([$mail]);
-    $userexist = $sqlquery->rowcount();
-/*créer le token avec 2 hashage de 2 paramètres différents propre à l'utilisateur*/
-    if ($userexist == 1) {
-        $idquery = $bdd->prepare("SELECT id FROM utilisateurs where email = ?");
-        $idquery->execute([$mail]);
-        $rowid = $idquery->fetch(PDO::FETCH_ASSOC);
-        $id = $rowid['id'];
+
+    $countuser = $database->count('utilisateurs', [
+        'email' => $mail,
+    ]);
+    //$sqlquery = $bdd->prepare("SELECT * FROM utilisateurs where email = ?");
+    //$sqlquery->execute([$mail]);
+    //$userexist = $sqlquery->rowcount();
+    /*créer le token avec 2 hashage de 2 paramètres différents propre à l'utilisateur*/
+    if ($countuser == 1) {
+        $id = $database->get("utilisateurs", "id", [
+            "email" => $mail,
+        ]);
+        //$idquery = $bdd->prepare("SELECT id FROM utilisateurs where email = ?");
+        //$idquery->execute([$mail]);
+        //$rowid = $idquery->fetch(PDO::FETCH_ASSOC);
+        //$id = $rowid['id'];
         $monmail = 'marie.a.s45@gmail.com';
         $objetmail = 'Réinitialisation de votre mot de passe';
         $token = md5($mail) . md5(date("Y-m-d H:i:s"));
