@@ -1,21 +1,31 @@
 <?php
 session_start();
-echo $_SESSION['email'];
+echo 'Bienvenue sur le panneau d\'admin de ' . $_SESSION['email'];
 
 if (isset($_POST['deconnexion'])) {
     session_destroy();
-    echo '<br>Vous avez été déco';
+    echo '<script>alert("Vous avez été déco")</script>';
+    header('Location:login_exo5.php');
 }
 
 /*Connexion à la base de données*/
-$bduser = 'root';
+include_once 'C:/laragon/www/tetris-exercice-back/SQL/Niveau_2/database.php';
+use Medoo\Medoo;
+/* $bduser = 'root';
 $bdpass = '';
-$bdd = new PDO('mysql:host=localhost;dbname=niveau2', $bduser, $bdpass);
+$bdd = new PDO('mysql:host=localhost;dbname=niveau2', $bduser, $bdpass); */
 
-$tableaubdd = $bdd->prepare("SELECT id,prenom,nom,email,id_choix FROM utilisateurs");
+$users = $database->select('utilisateurs', [
+    "id",
+    "prenom",
+    "nom",
+    "email",
+    "id_choix",
+])
+/* $tableaubdd = $bdd->prepare("SELECT id,prenom,nom,email,id_choix FROM utilisateurs");
 $tableaubdd->execute();
 $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
-
+ */
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -62,6 +72,7 @@ $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
 ;?>
     </tbody>
 </table>
+<a href=formuser.php> Ajouter un nouvel utilisateur </a>
 
 <form action="" method="post">
  <input type="submit" value="Deconnexion" name="deconnexion">

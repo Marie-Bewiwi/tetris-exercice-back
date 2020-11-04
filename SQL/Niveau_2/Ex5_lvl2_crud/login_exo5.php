@@ -1,8 +1,7 @@
 <?php
+include_once 'C:/laragon/www/tetris-exercice-back/SQL/Niveau_2/database.php';
+use Medoo\Medoo;
 session_start();
-$bduser = 'root';
-$bdpass = '';
-$bdd = new PDO('mysql:host=localhost;dbname=niveau2', $bduser, $bdpass);
 
 if (isset($_POST['Signin'])) {
     $mail = htmlspecialchars($_POST['email']);
@@ -11,17 +10,20 @@ if (isset($_POST['Signin'])) {
     if (true) {
         if (!empty($_POST['email']) and !empty($_POST['password'])) {
 
-            $requser = $bdd->prepare("SELECT * FROM utilisateurs WHERE email = ?");
-            $requser->execute([$mail]);
-            $userexist = $requser->rowcount();
+            $countuser = $database->count('utilisateurs', [
+                'email' => $mail,
+            ]);
+            // $requser = $bdd->prepare("SELECT * FROM utilisateurs WHERE email = ?");
+            //$requser->execute([$mail]);
+            //$userexist = $requser->rowcount();
 
-            if ($userexist == 1) {
+            if ($countuser == 1) {
+                $reqmdp = $database->get('utilisateurs', 'mdp', ['email' => $mail]);
+                // $reqmdp = $bdd->prepare('SELECT mdp FROM utilisateurs WHERE email = ?');
+                // $reqmdp->execute([$mail]);
+                //  $rowmdp = $reqmdp->fetch(PDO::FETCH_ASSOC);
 
-                $reqmdp = $bdd->prepare('SELECT mdp FROM utilisateurs WHERE email = ?');
-                $reqmdp->execute([$mail]);
-                $rowmdp = $reqmdp->fetch(PDO::FETCH_ASSOC);
-
-                if (password_verify($password, $rowmdp['mdp'])) {
+                if (password_verify($password, $reqmdp)) {
 
                     $_SESSION['email'] = $mail;
                     $essai = 1;
@@ -38,9 +40,15 @@ if (isset($_POST['Signin'])) {
         } else {
             $erreur = "Tous les champs doivent être complétés";
         }
+
         /*Insertion du log en bdd table connexion*/
-        $tentative = $bdd->prepare("INSERT INTO connexions (login,password,tentative) VALUES (?,?,?)");
-        $tentative->execute(array($mail, $password, $essai));
+        $database->insert('connexions', [
+            'login' => $mail,
+            'password' => $password,
+            'tentative' => $essai,
+        ]);
+        // $tentative = $bdd->prepare("INSERT INTO connexions (login,password,tentative) VALUES (?,?,?)");
+        // $tentative->execute(array($mail, $password, $essai));
     }
 }
 ?>
@@ -50,7 +58,7 @@ if (isset($_POST['Signin'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice 1</title>
+    <title>Connexion</title>
 </head>
 <body>
 <form method="POST" action=''>
