@@ -30,14 +30,16 @@ if (isset($_POST['Signin'])) {
                     header('Location:homeex5.php');
 
                 } else {
-                    $erreur = 'mdp incorrect';
+                    $erreur = 'Mail ou mot de passe incorrect';
                     $essai = 0;
 
                 }
             } else {
-                $erreur = "Adresse incorrecte ! ";
+                $essai = 0;
+                $erreur = "Mail ou mot de passe incorrect";
             }
         } else {
+            $essai = 0;
             $erreur = "Tous les champs doivent être complétés";
         }
 
@@ -59,27 +61,96 @@ if (isset($_POST['Signin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href='style.css'>
 </head>
 <body>
-<form method="POST" action=''>
-<div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email">
+
+
+<section class="hero is-info is-fullheight">
+  <!-- Hero head: will stick at the top -->
+<div class="hero-head">
+    <header class="navbar">
+        <div class="container">
+            <div class="columns is-centered is-mobile">
+                <div class="navbar-brand column is-col-1">
+                    <a class="navbar-item">
+                        <img src="fried-egg.svg" alt="Logo" width="112px" height="28px"> Sunnyside
+                    </a>
+                </div>
+                <div class='navbar-item column is-three-quarters-mobile is-half-desktop is-half-fullhd is-align-self-center mr-2'>
+                The cute tool to manage your users
+                </div>
+            </div>
+        </div>
+    </header>
 </div>
 
-<div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password">
-</div>
 
-<input type="submit" value="SignIn" name='Signin'>
-</form>
-<?php
-if (isset($erreur)) {
-    echo $erreur;
+<!-- Fin du header -->
+
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Connect to the database
+      </h1>
+
+      <div class= "container custom_form">
+        <form method='post' action="">
+            <div class="field">
+                <label class="label">Email:</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="email" placeholder="Your email here" value="" id='email' name='email'>
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                    </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field">
+            <label class="label">Password:</label>
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" type="password" placeholder="Your password here" value="" id='password' name="password">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+                </span>
+            </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input type="submit" class="button is-link" name='Signin'></button>
+                </div>
+            </div>
+        </form>
+       <?php if (isset($erreur)) {
+    echo "<div class='notification my-2 py-0 is-light is-danger'>$erreur</div>";
 }
-/*Normalement, on l'envoie hashé !*/
-/*$requeteban = $bdd->prepare("SELECT tentative FROM connexions WHERE login = ? ORDER BY heure DESC");
+?>
+
+    </div>
+    </div>
+  </div>
+<!-- Fin du body -->
+<!-- Début du footer -->
+<div class="hero-foot">
+      <div class="container has-text-centered">
+        <p class='is-size-7'> Made with love by Marie-Bewiwi</p>
+      </div>
+    </nav>
+  </div>
+
+
+ <?php
+/* if (isset($erreur)) {
+echo "<div class='notification is-danger'>$erreur</div>";
+}
+
+/* Bonus à finir
+$requeteban = $bdd->prepare("SELECT tentative FROM connexions WHERE login = ? ORDER BY heure DESC");
 $requeteban->execute([$mail]);
 $result = $requeteban->fetchAll();
 $comptage = 0;
@@ -92,7 +163,8 @@ $comptage++;
 } else {
 break;
 }
-}*/
+} */
 ?>
+
 </body>
 </html>
