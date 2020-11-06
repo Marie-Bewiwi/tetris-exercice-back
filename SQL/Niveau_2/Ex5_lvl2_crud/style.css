@@ -1,0 +1,9 @@
+#custom_form {
+    width:50%;
+    min-width:250px;
+    box-sizing: border-box;
+    background-color: lightskyblue;
+    padding : 25px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px black!important;
+}

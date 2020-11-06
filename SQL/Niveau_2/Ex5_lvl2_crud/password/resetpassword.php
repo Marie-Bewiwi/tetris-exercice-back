@@ -23,7 +23,7 @@ if (isset($_POST['envoiemail'])) {
         $monmail = 'marie.a.s45@gmail.com';
         $objetmail = 'Réinitialisation de votre mot de passe';
         $token = md5($mail) . md5(date("Y-m-d H:i:s"));
-        $body = "<p>Vous avez oublié votre mot de passe et avez demandé une réinitialition, pour se faire, cliquez sur le lien suivant : http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex4_lvl2_resetpassword/newpassword.php?id=" . urlencode($id) . '&token=' . urlencode($token) . '';
+        $body = "<p>Vous avez oublié votre mot de passe et avez demandé une réinitialition, pour se faire, cliquez sur le lien suivant : http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex5_lvl2_crud/password/newpassword.php?id=" . urlencode($id) . '&token=' . urlencode($token) . '';
         send_mail($monmail, $objetmail, $body);
         echo "<script> alert('Votre mail a bien été envoyé!') </script>";
     } else {

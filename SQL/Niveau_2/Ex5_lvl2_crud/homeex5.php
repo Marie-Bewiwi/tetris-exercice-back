@@ -56,7 +56,7 @@ $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
             <td> <?php echo $user['email'] ?></td>
             <td><?php echo $user['id_choix'] ?></td>
             <td>
-                <form action='delete.php' method='post'>
+                <form action='crud/delete.php' method='post'>
                     <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
                     <input type='submit' value='supp' name='supp' id='supp'>
                 </form>

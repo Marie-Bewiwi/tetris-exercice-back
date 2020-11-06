@@ -8,11 +8,11 @@ if (isset($_SESSION['email'])) {
     $prenom = "";
     $email = "";
     $idchoix = "";
-    $action = "create.php";
+    $action = "http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex5_lvl2_crud/crud/create.php";
     $value = "Créer";
     if (isset($_POST['id'])) {
         $iduser = $_POST['id'];
-        $action = "update.php";
+        $action = "http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex5_lvl2_crud/crud/update.php";
         $user = $database->get('utilisateurs', [
             "nom",
             "prenom",

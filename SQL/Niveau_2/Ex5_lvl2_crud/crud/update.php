@@ -26,7 +26,7 @@ if (isset($_SESSION['email'])) {
         $_POST['id_choix'],
         $iduser,
         ));*/
-        header('Location:homeex5.php');
+        header('location:http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex5_lvl2_crud/homeex5.php');
     } else {
 
         $updatenomdp = $database->update('utilisateurs', [
@@ -44,7 +44,7 @@ if (isset($_SESSION['email'])) {
         $_POST['email'],
         $_POST['id_choix'],
         ]);*/
-        header('Location:homeex5.php');
+        header('Location:http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex5_lvl2_crud/homeex5.php');
     }
 
 }

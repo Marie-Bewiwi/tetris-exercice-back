@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_SESSION['email'])) {
     if (empty($_POST['nom']) && empty($_POST['prenom']) && empty($_POST['email']) && empty($_POST['mdp']) && empty($_POST["id_choix"])) {
-        header("Location:formuser.php");
+        header("Location:http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex5_lvl2_crud/homeex5.php");
     } else {
         $nom = htmlspecialchars($_POST['nom']);
         $prenom = htmlspecialchars($_POST['prenom']);
@@ -20,6 +20,6 @@ if (isset($_SESSION['email'])) {
             "mdp" => $mdphash,
             "id_choix" => $idchoix,
         ]);
-        header('location:homeex5.php');
+        header('location:http://localhost/tetris-exercice-back/SQL/Niveau_2/Ex5_lvl2_crud/homeex5.php');
     }
 }

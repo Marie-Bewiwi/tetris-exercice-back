@@ -62,8 +62,9 @@ if (isset($_POST['Signin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href='style.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
 </head>
 <body>
 
@@ -96,8 +97,10 @@ if (isset($_POST['Signin'])) {
         Connect to the database
       </h1>
 
-      <div class= "container custom_form">
+      <div class="container" id="custom_form">
+
         <form method='post' action="">
+
             <div class="field">
                 <label class="label">Email:</label>
                 <div class="control has-icons-left has-icons-right">
@@ -105,35 +108,35 @@ if (isset($_POST['Signin'])) {
                     <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                     </span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Password:</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="password" placeholder="Your password here" value="" id='password' name="password">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
                     </span>
                 </div>
             </div>
 
             <div class="field">
-            <label class="label">Password:</label>
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" type="password" placeholder="Your password here" value="" id='password' name="password">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                </span>
-                </span>
-            </div>
-            </div>
-
-            <div class="field">
                 <div class="control">
-                    <input type="submit" class="button is-link" name='Signin'></button>
+                    <input type="submit" class="button is-link" name='Signin'>
                 </div>
             </div>
+
         </form>
        <?php if (isset($erreur)) {
     echo "<div class='notification my-2 py-0 is-light is-danger'>$erreur</div>";
 }
 ?>
+</div>
+<a class='button is-small mt-3' href="password/resetpassword.php"> Mot de passe oublié ? </a>
+</div>
+</div>
 
-    </div>
-    </div>
-  </div>
 <!-- Fin du body -->
 <!-- Début du footer -->
 <div class="hero-foot">
@@ -142,6 +145,7 @@ if (isset($_POST['Signin'])) {
       </div>
     </nav>
   </div>
+</section>
 
 
  <?php
