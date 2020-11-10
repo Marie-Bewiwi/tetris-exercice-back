@@ -52,41 +52,13 @@ if (isset($_POST['Signin'])) {
         // $tentative = $bdd->prepare("INSERT INTO connexions (login,password,tentative) VALUES (?,?,?)");
         // $tentative->execute(array($mail, $password, $essai));
     }
+
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-    <link rel="stylesheet" href='style.css'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-
-</head>
-<body>
-
-
-<section class="hero is-info is-fullheight">
-  <!-- Hero head: will stick at the top -->
-<div class="hero-head">
-    <header class="navbar">
-        <div class="container">
-            <div class="columns is-centered is-mobile">
-                <div class="navbar-brand column is-col-1">
-                    <a class="navbar-item">
-                        <img src="fried-egg.svg" alt="Logo" width="112px" height="28px"> Sunnyside
-                    </a>
-                </div>
-                <div class='navbar-item column is-three-quarters-mobile is-half-desktop is-half-fullhd is-align-self-center mr-2'>
-                The cute tool to manage your users
-                </div>
-            </div>
-        </div>
-    </header>
-</div>
+<?php
+$title = "Connexion";
+include 'templates/header.php'?>
 
 
 <!-- Fin du header -->
@@ -139,14 +111,7 @@ if (isset($_POST['Signin'])) {
 
 <!-- Fin du body -->
 <!-- Début du footer -->
-<div class="hero-foot">
-      <div class="container has-text-centered">
-        <p class='is-size-7'> Made with love by Marie-Bewiwi</p>
-      </div>
-    </nav>
-  </div>
-</section>
-
+<?php include "templates/footer.php";?>
 
  <?php
 /* if (isset($erreur)) {

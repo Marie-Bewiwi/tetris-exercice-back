@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo 'Bienvenue sur le panneau d\'admin de ' . $_SESSION['email'];
+$bienvenue = 'Bienvenue sur le panneau d\'admin de ' . $_SESSION['email'];
 
 if (isset($_POST['deconnexion'])) {
     session_destroy();
@@ -27,15 +27,15 @@ $tableaubdd->execute();
 $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
  */
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-<table>
+<?php $title = "Home";
+include "templates/header.php";?>
+<div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+          <?php echo $bienvenue ?>
+      </h1>
+<div class='container' id='custom_table'>
+<table class="table">
     <thead>
         <tr>
             <th>id</th>
@@ -58,13 +58,13 @@ $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
             <td>
                 <form action='crud/delete.php' method='post'>
                     <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
-                    <input type='submit' value='supp' name='supp' id='supp'>
+                    <input type='submit' value='supp' name='supp' id='supp' class='button is-danger'>
                 </form>
             </td>
             <td>
                 <form action='formuser.php' method='post'>
                     <input type='hidden' value='<?php echo $user['id'] ?>' name='id'>
-                    <input type='submit' value='modif' name='mofif' id='modif'>
+                    <input type='submit' value='modif' name='mofif' id='modif' class="button is-primary">
                 </form>
             </td>
         </tr>
@@ -72,10 +72,21 @@ $users = $tableaubdd->fetchAll(PDO::FETCH_ASSOC);
 ;?>
     </tbody>
 </table>
-<a href=formuser.php> Ajouter un nouvel utilisateur </a>
 
+</div>
+
+    </div>
+</div>
+
+<div class="container has-text-centered">
 <form action="" method="post">
- <input type="submit" value="Deconnexion" name="deconnexion">
- </form>
-</body>
-</html>
+<a href=formuser.php class='button is-success'> Ajouter un nouvel utilisateur </a>
+<button type="submit" name="deconnexion" class="button is-warning">
+    <span class="icon is-small">
+    <i class="fas fa-sign-out-alt"></i>
+    </span>
+    <span>Déconnexion</span>
+  </button>
+</form>
+</div>
+<?php include 'templates/footer.php';?>
