@@ -24,27 +24,40 @@ if (isset($_POST['btnmdp'])) {
 ?>
 
 
+<?php $title = "Nouveau mot de passe";
+include "../templates/header.php";?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password recovery</title>
-</head>
-<body>
-<form method="post" action="">
+<div class="hero-body">
+    <div class="container has-text-centered">
+    <h1 class="title"> Définissez votre nouveau mot de passe</h1>
+    <div class="container" id="custom_form">
 
-    <p>
-        <label for="newpassword">Rentrez ici votre nouveau mot de passe : </label>
-        <input type="password" name="newpassword" id="newpassword">
-    </p>
-    <p>
-        <label for="passwordconfirm">Retapez votre nouveau mot de passe : </label>
-        <input type="password" name="passwordconfirm" id="passwordconfirm">
+    <form action="" method="post">
+    <div class="field">
+                  <label class='label'for="newpassword">Rentrez ici votre nouveau mot de passe : </label>
+                <div class="control has-icons-left has-icons-right">
+                <input class="input" type="password" name="newpassword" id="newpassword">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="field">
+                  <label class='label'for="passwordconfirm">Retapez votre nouveau mot de passe : </label>
+                <div class="control has-icons-left has-icons-right">
+                <input class="input" type="password" name="passwordconfirm" id="passwordconfirm">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                    </span>
+                </div>
+            </div>
 
-        <input type="submit" value="Envoyer" name="btnmdp" id="btnmdp">
-    </p>
-</form>
-</body>
-</html>
+
+        <button type="submit" id='btnmdp' name='btnmdp' value="Envoyer" class='button is-success'>
+            Mofifier mon mot de passe </button>
+    </form>
+</div>
+</div>
+</div>
+<?php include "../templates/footer.php";?>
+

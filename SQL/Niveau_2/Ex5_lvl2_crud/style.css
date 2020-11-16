@@ -1,12 +1,10 @@
 #custom_form {
     width:50%;
     box-sizing: border-box;
-    background-color: lightskyblue;
+    background-color: rgb(221, 169, 55);
     padding : 25px;
     border-radius: 8px;
     box-shadow: 3px 3px 3px black !important;
-    display: flex;
-    justify-content: center;
 }
 #custom_table {
     width: 50%;

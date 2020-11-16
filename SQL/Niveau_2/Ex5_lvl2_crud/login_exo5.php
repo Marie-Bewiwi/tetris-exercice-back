@@ -105,6 +105,7 @@ include 'templates/header.php'?>
 }
 ?>
 </div>
+<a class='button is-small mt-3' href="signin.php">Créer un compte</a>
 <a class='button is-small mt-3' href="password/resetpassword.php"> Mot de passe oublié ? </a>
 </div>
 </div>
