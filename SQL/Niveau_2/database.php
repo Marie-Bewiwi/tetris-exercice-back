@@ -4,7 +4,7 @@ use Medoo\Medoo;
 //initialisation
 $database = new Medoo([
     'database_type' => 'mysql',
-    'database_name' => 'niveau2',
+    'database_name' => 'exniveau2',
     'server' => 'localhost',
     'username' => 'root',
     'password' => '',
